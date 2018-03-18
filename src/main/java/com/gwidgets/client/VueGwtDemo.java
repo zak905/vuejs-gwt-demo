@@ -9,6 +9,6 @@ public class VueGwtDemo implements EntryPoint {
     VueGWT.init();
     VueGWT.initWithoutVueLib();
 
-    AppComponent appComponent = Vue.attach("#app", AppComponent.class);
+    Vue.attach("#app", AppComponent.class);
   }
 }
