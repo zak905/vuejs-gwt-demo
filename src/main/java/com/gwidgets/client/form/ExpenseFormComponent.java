@@ -25,7 +25,7 @@ public class ExpenseFormComponent extends VueComponent {
 
     @Prop
     @JsProperty
-    String vatRate;
+    double vatRate;
 
     @Prop
     @JsProperty
@@ -42,6 +42,6 @@ public class ExpenseFormComponent extends VueComponent {
 
     @Computed
     public double getAmountVAT() {
-        return Double.parseDouble(vatRate) / 100 * amount;
+        return vatRate / 100 * amount;
     }
 }

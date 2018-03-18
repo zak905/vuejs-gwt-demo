@@ -1,7 +1,15 @@
 package com.gwidgets.client.dto;
 
 public class Expense {
-    public Expense(double amount, String date, String reason, double amountVat, String vatRate, String currency) {
+    public double amount;
+    public String date;
+    public String reason;
+    public double amountVAT;
+    public double vatRate;
+    public String vat;
+    public String currency;
+
+    public Expense(double amount, String date, String reason, double amountVat, double vatRate, String currency) {
         this.amount = amount;
         this.date = date;
         this.reason = reason;
@@ -9,18 +17,4 @@ public class Expense {
         this.vatRate = vatRate;
         this.currency = currency;
     }
-
-    public double amount;
-
-    public String date;
-
-    public String reason;
-
-    public double amountVAT;
-
-    public String vatRate;
-
-    public String vat;
-
-    public String currency;
 }
