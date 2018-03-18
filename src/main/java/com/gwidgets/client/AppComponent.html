@@ -1,0 +1,10 @@
+<div id="app">
+    <img style="width: 10%" src="https://camo.githubusercontent.com/bbb2b6dcdfb5844d5854e734ca5ca1063a4c0353/68747470733a2f2f6178656c6c69656e63652e6769746875622e696f2f7675652d6777742f7265736f75726365732f696d616765732f5675652d4757542d6c6f676f2e706e67">
+    <div>
+        <label for="vat"> VAT in %</label>
+        <input id="vat" type="number" v-model="vatRate">
+    </div>
+    <expense-form :currencies="currencies" :vatRate="vatRate" :expenses="expenses" > </expense-form>
+    <div class="divider"></div>
+    <expense-list :currencies="currencies" :expenses="expenses" :vatRate="vatRate"> </expense-list>
+</div>

@@ -1,0 +1,32 @@
+<vue-gwt:import class="com.gwidgets.client.dto.Currency"/>
+<div class="expense-form">
+    <label for="amount">Amount: </label>
+    <input type="number" id="amount" v-model="amount"/>
+    <label for="amountVAT">VAT: </label>
+    <input type="number" id="amountVAT" v-model="amountVAT" disabled/>
+        <label for="currency">Currency: </label>
+    <select id="currency" v-model="currency">
+            <option v-for="Currency currency in currencies"> {{ currency.getName() }} </option>
+        </select>
+    <label for="date"  >Date: </label>
+    <input type="date" id="date" value="2018/03/06" v-model="date"/>
+    <label for="reason">Reason: </label>
+    <textarea id="reason" v-model="reason" />
+    <button id="append" v-on:click="submitExpense"> Add Expense </button>
+</div>
+
+<style scoped>
+.expense-form {
+ margin: auto;
+ display: flex;
+ max-width: 400px;
+ flex-direction: column;
+}
+button {
+  background: green;
+  color: floralwhite;
+  margin: auto;
+  min-height: 50px;
+  margin-top: 20px;
+}
+</style>

@@ -1,0 +1,32 @@
+<vue-gwt:import class="com.gwidgets.client.dto.Expense"/>
+<div class="expense-list">
+    <table class="expense-table">
+        <thead>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>VAT rate %</th>
+        <th>VAT</th>
+        <th>Reason</th>
+        </thead>
+        <tbody>
+        <tr v-for="Expense expense in expenses">
+            <td>{{ expense.amount + getCurrencySymbol(expense.currency)}}</td>
+            <td>{{ expense.date }}</td>
+            <td>{{ expense.vatRate }}</td>
+            <td>{{ expense.amountVAT + getCurrencySymbol(expense.currency)}}</td>
+            <td>{{ expense.reason }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<style scoped>
+.expense-list{
+    margin: auto;
+    max-width: 400px;
+}
+.expense-table {
+    border: solid 1px black;
+    min-width: 400px;
+}
+</style>

@@ -1,0 +1,35 @@
+.expense-form {
+ margin: auto;
+ display: flex;
+ max-width: 400px;
+ flex-direction: column;
+}
+
+button {
+  background: green;
+  color: floralwhite;
+  margin: auto;
+  min-height: 50px;
+  margin-top: 20px;
+}
+
+.expense-list{
+    margin: auto;
+    max-width: 400px;
+}
+.expense-table {
+    border: solid 1px black;
+    min-width: 400px;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+.divider {
+  height: 30px;
+}
