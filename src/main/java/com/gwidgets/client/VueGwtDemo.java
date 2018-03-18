@@ -7,7 +7,6 @@ import com.google.gwt.core.client.EntryPoint;
 public class VueGwtDemo implements EntryPoint {
   public void onModuleLoad() {
     VueGWT.init();
-    VueGWT.initWithoutVueLib();
 
     Vue.attach("#app", AppComponent.class);
   }
