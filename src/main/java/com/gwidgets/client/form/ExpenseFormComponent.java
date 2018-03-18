@@ -1,16 +1,16 @@
 package com.gwidgets.client.form;
 
+import java.util.List;
 
 import com.axellience.vuegwt.core.annotations.component.Component;
+import com.axellience.vuegwt.core.annotations.component.Computed;
 import com.axellience.vuegwt.core.annotations.component.Prop;
-import com.axellience.vuegwt.core.annotations.component.Watch;
 import com.axellience.vuegwt.core.client.component.VueComponent;
 import com.gwidgets.client.dto.Currency;
 import com.gwidgets.client.dto.Expense;
+
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsProperty;
-
-import java.util.List;
 
 @Component
 public class ExpenseFormComponent extends VueComponent {
@@ -20,8 +20,6 @@ public class ExpenseFormComponent extends VueComponent {
     String date = "";
     @JsProperty
     String reason="";
-    @JsProperty
-    double amountVAT=0;
     @JsProperty
     String currency="";
 
@@ -39,17 +37,11 @@ public class ExpenseFormComponent extends VueComponent {
 
     @JsMethod
     public void submitExpense() {
-        expenses.add(new Expense(amount, date, reason, amountVAT, vatRate, currency));
+        expenses.add(new Expense(amount, date, reason, getAmountVAT(), vatRate, currency));
     }
 
-
-    @Watch("amount")
-    public void watchAmount(double newAmount) {
-        this.amountVAT = Double.parseDouble(this.vatRate) / 100 * newAmount;
-    }
-
-    @Watch("vatRate")
-    public void watchVatRate(String newVatRate) {
-        this.amountVAT = Double.parseDouble(newVatRate) / 100 * this.amount;
+    @Computed
+    public double getAmountVAT() {
+        return Double.parseDouble(vatRate) / 100 * amount;
     }
 }
