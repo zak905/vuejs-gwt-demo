@@ -7,13 +7,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.gwidgets</groupId>
   <artifactId>vue-gwt-demo</artifactId>
-  <packaging>war</packaging>
+  <packaging>gwt-app</packaging>
   <version>0.1</version>
-  <name>Maven Archetype for GWT</name>
+  <name>Vue.js GWT Demo</name>
 
   <properties>
     <!-- Convenience property to set the GWT version -->
-    <gwt.version>2.8.1</gwt.version>
+    <gwt.version>2.8.2</gwt.version>
 
     <!-- GWT 2.8 requires 1.8 -->
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -37,18 +37,11 @@
   <dependencies>
     <dependency>
       <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-servlet</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.gwt</groupId>
       <artifactId>gwt-user</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-dev</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -71,35 +64,54 @@
   </dependencies>
 
   <build>
-    <!-- Output classes directly into the webapp, so that IDEs and "mvn process-classes" update them in DevMode -->
-    <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>net.ltgt.gwt.maven</groupId>
+          <artifactId>gwt-maven-plugin</artifactId>
+          <version>1.0-rc-9</version>
+          <extensions>true</extensions>
+          <configuration>
+            <skipModule>true</skipModule>
+            <failOnError>true</failOnError>
+            <compilerArgs>
+              <arg>-generateJsInteropExports</arg>
+              <arg>-XdisableUpdateCheck</arg>
+            </compilerArgs>
+            <useCompilerArgsForTests>true</useCompilerArgsForTests>
+            <codeserverArgs>
+              <arg>-generateJsInteropExports</arg>
+              <arg>-XdisableUpdateCheck</arg>
+              <arg>-bindAddress</arg><arg>0.0.0.0</arg>
+            </codeserverArgs>
+            <devmodeArgs>
+              <arg>-generateJsInteropExports</arg>
+              <arg>-XdisableUpdateCheck</arg>
+              <arg>-bindAddress</arg><arg>0.0.0.0</arg>
+            </devmodeArgs>
+            <style>OBFUSCATED</style> <!-- OBFUSCATED, PRETTY, or DETAILED -->
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
 
     <plugins>
-
-      <!-- Mojo's Maven Plugin for GWT -->
+      <!-- Maven Plugin for GWT -->
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
+        <groupId>net.ltgt.gwt.maven</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
-        <version>2.8.1</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-        </executions>
+        <!-- inherited>false</inherited-->
         <configuration>
-          <runTarget>vuegwtdemo.html</runTarget>
-          <modules>
-            <module>com.gwidgets.vuegwtdemo</module>
-          </modules>
-            <generateJsInteropExports>true</generateJsInteropExports>
+          <moduleName>com.gwidgets.vuegwtdemo</moduleName>
+          <startupUrls>
+            <url>vuegwtdemo/vuegwtdemo.html</url>
+          </startupUrls>
         </configuration>
       </plugin>
-        <plugin>
+      <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.3</version>
+            <version>3.7.0</version>
             <configuration>
                 <compilerArgument>-parameters</compilerArgument>
                 <testCompilerArgument>-parameters</testCompilerArgument>
